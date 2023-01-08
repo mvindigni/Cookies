@@ -1,13 +1,9 @@
-const min = -100;
-const max = 100;
-
-
 async function genProblem() {
     let problem = document.getElementById("problem");
 
     while(true) {
         problem.innerHTML = 
-        mathTime(min, max)
+        mathTime()
         await sleep(3000);
     }
 }
@@ -34,7 +30,7 @@ Subtraction - two numbers between -100 and 100
 Division - multiply two numbers between -20 and 20 then return the following string: product / first factor
 */
 
-function mathTime(min, max){
+function mathTime(min=-100, max=100){
     switch (randomInt(0, 3, 0)){
         case 0: //Addition
             return  "\(" + randomInt(min, max, 1) + " + " + randomInt(min, max, 1) + "\)"; //weird formatting for MathJax
