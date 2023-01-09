@@ -2,25 +2,22 @@ async function genProblem() {
     let problem = document.getElementById("problem");
 
     while(true) {
-        problem.innerHTML = 
-        mathTime()
+        problem.innerHTML = mathTime()
         await sleep(3000);
     }
 }
 
 function randomInt(min, max, stringFlag) {
-    switch (stringFlag){
-        case 0:
-            return (Math.floor(Math.random() * (max - min + 1)) + min);
-        case 1:
-            return (Math.floor(Math.random() * (max - min + 1)) + min).toString(); 
+    if (stringFlag){
+        return (Math.floor(Math.random() * (max - min + 1)) + min).toString(); 
+    } else {
+        return (Math.floor(Math.random() * (max - min + 1)) + min);
     }
   }
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-
 
 /*
 Four types of math problems:
@@ -42,8 +39,12 @@ function mathTime(min=-100, max=100){
             return "\(" + randomInt(min/5, max/5, 1)  + " * " + randomInt(min/5, max/5, 1) + "\)";
         
         case 3: //Division
-            var a = randomInt(min/5, max/5, 0);
-            var b = randomInt(min/5, max/5, 0);
+            let a = randomInt(min/5, max/5, 0);
+            let b = randomInt(min/5, max/5, 0);
+            while (a == 0){
+                a = randomInt(min/5, max/5, 0);
+            } 
+
             return "\(" + (a*b).toString()  + " / " + a.toString()  + "\)";
     }
 }
